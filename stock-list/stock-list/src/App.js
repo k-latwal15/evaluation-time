@@ -14,11 +14,19 @@ function App() {
     setStockResult(data)
   }, [])
 
+  const handleChange = (e) => {
+    const userInput = e.target.value.toLowerCase();
+
+    const result = stockResult.filter((stock) => stock.name.toLowerCase().includes(userInput) || stock.type.toLowerCase().includes(userInput))
+    console.log(result, 'check')
+    setStockResult(result)
+  }
+
 
   return (
     <div className="App">
       <div>
-        <input placeholder='search stock by name or price' width={60} />
+        <input placeholder='search stock by name, price and type' onChange={handleChange} />
       </div>
       <table>
         {stockResult.map((stock, index) => (
